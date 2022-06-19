@@ -20,7 +20,7 @@ class PostgresBackend(BroadcastBackend):
 
     async def ensure_pool(self) -> None:
         if not self._pool:
-            self._pool = await asyncpg.create_pool(self._url, min_size=3, max_size=5)  # don't waste resources?
+            self._pool = await asyncpg.create_pool(self._url, min_size=3, max_size=50)  # don't waste resources?
 
     async def ensure_connection(self) -> None:
         if not self._conn or self._conn.is_closed():
